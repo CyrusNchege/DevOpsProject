@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ item.title }}</h2>
+<p>{{ item.description }}</p>
+<a href="{% url 'edit_item' id=item.id %}">Edit</a>
+<a href="{% url 'delete_item' id=item.id %}">Delete</a>
+<a href="{% url 'index' %}">Back to list</a>
+{% endblock %}
