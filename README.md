@@ -43,3 +43,37 @@ Using key pair, I accessed the instance using SSH
 The nginx is installed and running on the instance, and I can access the default page of nginx on the public IP of the instance.
 
 ![nginx](./Screenshots/task3/nginx.png)
+
+# Task 4: Cloud Storage and Networking (Cloud Engineering)
+In task 4, I have created an S3 bucket on AWS using the AWS Management Console. 
+
+![s3](./Screenshots/task4/s3.png)
+
+Using the AWS CLI(Which has to be installed and configured using AWS credentials), I uploaded a file to the S3 bucket. 
+
+![awscli](./Screenshots/task4/awss3copy.png)
+
+I also set up access permissions on the S3 bucket by editing the bucket policy to allow public access to the objects in the bucket.
+The bucket policy is as follows:
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::silassessmentbucket/*"
+        }
+    ]
+}
+```
+` arn:aws:s3:::silassessmentbucket` is the ARN of the bucket.
+
+Using AWS CLI, I was able to retrieve the file from the S3 bucket.
+
+```bash
+aws s3 cp s3://silassessmentbucket/  test.txt
+```
+
