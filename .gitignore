@@ -140,3 +140,12 @@ static/
 *.iml
 *.ipr
 *.iws
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform
+terraform.tfstate
+terraform.tfstate.backup
+.terraform.lock.hcl
+

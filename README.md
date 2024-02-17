@@ -77,3 +77,22 @@ Using AWS CLI, I was able to retrieve the file from the S3 bucket.
 aws s3 cp s3://silassessmentbucket/  test.txt
 ```
 
+# Task 5: Infrastructure as Code (IaC) (DevOps and Cloud Engineering)
+In task 5, I have created an infrastructure as code using Terraform to deploy an EC2, VPC and define security groups.
+
+To run the terraform code, you have to have terraform installed on your machine and also have AWS CLI installed and configured with your credentials.
+
+The terraform code is in the `terraform` directory.
+```bash
+cd terraform
+```
+```bash
+terraform init
+```
+```bash
+terraform apply
+```
+This will create the infrastructure on AWS.
+![terraform](./Screenshots/task4tf/tfscreenshot.png)
+
+# Task 6: CI/CD Pipeline with Cloud Integration
