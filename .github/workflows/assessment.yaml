@@ -25,14 +25,20 @@ jobs:
       - name: Run tests
         run: python manage.py test
 
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key: ${{ secrets.AWS_ACCESS_KEY}}
+          aws-secret-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: us-east-1
+
       - name: Archive artifacts
         run: |
           tar -czvf django-app.tar.gz .
         
       - name: Upload artifact to S3
-        uses: actions/aws/cli@v1
-        with:
-          args: s3 cp django-app.tar.gz s3://silassessmentbucket/django-app.tar.gz
+        run: |
+          aws s3 cp django-app.tar.gz s3://silassessmentbucket/
           
 
     
