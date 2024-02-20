@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Build Docker image
         run: docker build -t django-app .
@@ -36,14 +36,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: SSH into EC2 instance
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.EC2_KEY }}
+          key: ${{ secrets.KEY }}
           script: |
             aws s3 cp s3://silassessmentbucket/django-app.tar.gz django-app.tar.gz
             docker load -i django-app.tar.gz
