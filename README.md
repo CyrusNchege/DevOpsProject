@@ -96,16 +96,6 @@ This will create the infrastructure on AWS.
 ![terraform](./Screenshots/task4tf/tfscreenshot.png)
 
 # Task 6: CI/CD Pipeline with Cloud Integration
-In task 6, I have created a CI/CD pipeline using GitHub Actions. The pipeline is triggered on every push to the main branch. The code is in the `.github/workflows/asessment.yaml` file.
+In task 6, I have created a CI/CD pipeline using GitHub Actions. The pipeline is triggered on every push to the main branch. The code is in the `.github/workflows/asessment.yaml` file. It automatically triggers the pipeline on every push to the main branch.
 
-When the pipeline is triggered, it runs the following steps:
-- Checkout the code
-- Set up Python 3.8
-- Install dependencies
-- Run tests
-- Archive the the artifacts
-- Upload the artifacts to an S3 bucket
-- Deploy the application by logging into the EC2 instance using SSH and downloading the artifacts from the S3 bucket and running the application.
-
-For the  ec2 instance, I added an IAM role to the instance to allow it to access the S3 bucket.
 
