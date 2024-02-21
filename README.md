@@ -5,21 +5,17 @@ This project is a simple web application that displays a list of items and allow
 Under task 1, I have integrated the project with a version control system. I have used Git as the version control system and have created a repository on GitHub to store the project. The project is a simple web application that displays a list of items and allows the user to add new items to the list and perform all other CRUD operations. The database used is SQLite.
 
 # Task 2: Containerization with Docker
-In task 2, I have containerized the project using Docker. I have created a Dockerfile to build the image and also docker container to run the application. 
-### Example
+In task 2, I have containerized the project using Docker and Docker Compose. I have created a Dockerfile to build the image and a docker-compose.yml file to define the services. The Dockerfile and docker-compose.yml file are in the root directory of the project. To build the image and run the container, you have to have Docker and Docker Compose installed on your machine. Also, you have to have the project cloned to your machine and include .env file in the root directory of the project. The .env file example is in the .env.example file. You have to replace the values with your own values.
+
+To build the image, run the following command in the root directory of the project.
 ```bash
-docker build -t devops-assessment .
+docker-compose build
 ```
-This command will build the image of the application. 
-Also you have to be in the same directory where the Dockerfile is located. 
-
+To run the container, run the following command in the root directory of the project.
 ```bash
-docker run --name devops-assessment -p 8000:8000 devops-assessment
+docker-compose up
 ```
-This command will run the application in a container.
-
-Now you can access the application on http://127.0.0.1:8000/
-
+![dockercomposeup](./Screenshots/docker/composeup.png)
 # Task 3: Cloud Infrastructure (Cloud Engineering)
 In task 3, I have deployed a virtual machine on AWS EC2, specifically an Ubuntu 20.04 instance. I created a key pair to access the instance using SSH. I created a security group to allow traffic on port 80, 22, and 443.
  
@@ -98,4 +94,11 @@ This will create the infrastructure on AWS.
 # Task 6: CI/CD Pipeline with Cloud Integration
 In task 6, I have created a CI/CD pipeline using GitHub Actions. The pipeline is triggered on every push to the main branch. The code is in the `.github/workflows/asessment.yaml` file. It automatically triggers the pipeline on every push to the main branch.
 
+The following steps are performed in the pipeline:
+- Checkout the code
+- SSH into the EC2 instance
+- Git pull the latest code from the repository
+- Run the Docker Compose file to build the image and run the container
+
+Now, the simple web application is deployed on the EC2 instance and can be accessed using the public IP of the instance. (For tesing, I added port 8000 to the security group of the instance to allow traffic on port 8000)
 
