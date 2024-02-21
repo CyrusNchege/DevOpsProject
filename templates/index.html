@@ -2,12 +2,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Item List</h1>
-    <ul>
+    <h1>Item List </h1>
+    <ol>
         {% for item in items %}
         <li><a href="{% url 'item_detail' id=item.id %}">{{ item.title }}</a></li> - {{ item.description }}</li>
         {% endfor %}
-    </ul>
+    </ol>
 
     <button><a href="{% url 'add_item' %}">Add Item</a></button>
 {% endblock %}

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,6 +41,9 @@ INSTALLED_APPS = [
 
     # my apps
     'myapp',
+
+    # third party apps
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -116,6 +120,17 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
+
+# S3 bucket settings
+AWS_ACCESS =os.getenv('AWS_ACCESS')
+AWS_SECRET = os.getenv('AWS_SECRET')
+AWS_STORAGE_BUCKET_NAME = 'silassessmentbucket'
+AWS_S3_REGION_NAME = 'us-east-1'
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'

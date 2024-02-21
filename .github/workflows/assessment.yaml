@@ -6,46 +6,21 @@ on:
       - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Build Docker image
-        run: docker build -t django-app .
-
-      - name: Save Docker image
-        run: docker save django-app:latest | gzip > django-app.tar.gz
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
-
-      - name: Set up AWS CLI
-        uses: aws-actions/aws-cli-setup@v1
-
-      - name: Upload Docker image to S3
-        run: |
-          aws s3 cp django-app.tar.gz s3://my-silassessmentbucket/django-app.tar.gz
-
   deploy:
-    needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - name: SSH into EC2 instance
-        uses: appleboy/ssh-action@v0.1.4
+      - name: Deploy to AWS
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
+          port: 22
           script: |
-            aws s3 cp s3://silassessmentbucket/django-app.tar.gz django-app.tar.gz
-            docker load -i django-app.tar.gz
-            docker run -d -p 80:80 django-app:latest
+            cd /home/ubuntu/
+            git clone https://github.com/CyrusNchege/DevOpsProject.git
+            cd DevOpsProject
+            docker-compose up -d
