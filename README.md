@@ -102,3 +102,8 @@ The following steps are performed in the pipeline:
 
 Now, the simple web application is deployed on the EC2 instance and can be accessed using the public IP of the instance. (For tesing, I added port 8000 to the security group of the instance to allow traffic on port 8000)
 
+![EC2](./Screenshots/task6/ec2.png)
+
+
+# Task 7: Site Reliability Engineering
+
