@@ -106,4 +106,13 @@ Now, the simple web application is deployed on the EC2 instance and can be acces
 
 
 # Task 7: Site Reliability Engineering
+In task 7, I have created a simple monitoring system using Prometheus and Grafana. I have used Docker to run Prometheus and Grafana containers. The configuration files for Prometheus and Grafana are in the `prometheus.yml`. The `docker-compose.yml` file is in the root directory of the project.
 
+To run the monitoring system, you have to have Docker and Docker Compose installed on your machine.
+Run the following command in the root directory of the project.
+```bash
+docker-compose up
+```
+This will start the Prometheus and Grafana containers. You can access the Prometheus dashboard on `http://localhost:9090` and the Grafana dashboard on `http://localhost:3000`. The default username and password for Grafana is `admin` and `admin`.
+
+From the Prometheus dashboard, you can monitor the targets and the metrics.
